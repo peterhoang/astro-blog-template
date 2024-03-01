@@ -22,7 +22,7 @@
 	"scripts": {
 		"dev": "npx tinacms dev -c \"astro dev\"",
 		"start": "astro dev",
-		"build": "astro build",
+		"build": "tinacms build && astro build",
 		"sync": "astro sync",
 		"preview": "astro preview",
 		"postbuild": "pagefind --site dist",
@@ -44,6 +44,7 @@
 		"@pagefind/default-ui": "^1.0.4",
 		"@tailwindcss/typography": "0.5.10",
 		"@tinacms/cli": "^1.5.30",
+		"@types/node": "^20.11.24",
 		"@typescript-eslint/parser": "^6.16.0",
 		"clsx": "2.0.0",
 		"eslint": "^8.56.0",
