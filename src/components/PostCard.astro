@@ -11,14 +11,17 @@ const {
 } = Astro.props
 ---
 
-<article class='grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group rounded-lg'>
-	<a class='relative overflow-hidden' href={`/post/${slug}/`}>
+<article class='grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group'>
+	<a
+		class='relative overflow-hidden rounded-2xl hover:scale-105 transition duration-300 ease-in-out shadow-xl'
+		href={`/post/${slug}/`}
+	>
 		<Image
 			src={heroImage}
 			width={600}
 			height={200}
 			format='webp'
-			class='h-full min-w-full object-cover hover:scale-[101%] transition-all duration-200 rounded-[2px]'
+			class='h-full min-w-full object-cover rounded-[2px]'
 			alt={`img of ${title}`}
 		/>
 
@@ -66,26 +69,32 @@ const {
 </article>
 
 <script>
-	import { animate } from 'motion'
+	import { animate, inView } from 'motion'
 
 	const images = document.querySelectorAll('img')
 
 	document.addEventListener('DOMContentLoaded', function () {
 		const showAnimations = localStorage.getItem('animations') === 'true'
 
-		if (showAnimations) {
-			animate(
-				'.effect',
-				{
-					opacity: [0, 1],
-					clipPath: ['circle(0% at 0% 0%)', 'circle(100% at 50% 50%)']
-				},
-				{ duration: 2, easing: 'ease' }
-			)
-		} else {
-			images.forEach((img) => {
-				img.classList.remove('opacity-0')
-			})
-		}
+		inView('img', ({ target }) => {
+			const controls = animate(target, { opacity: [0, 1] }, { duration: 1, easing: 'ease' })
+
+			return (leaveInfo) => controls.stop()
+		})
+
+		// 	if (showAnimations) {
+		// 		animate(
+		// 			'.effect',
+		// 			{
+		// 				opacity: [0, 1],
+		// 				clipPath: ['circle(0% at 0% 0%)', 'circle(100% at 50% 50%)']
+		// 			},
+		// 			{ duration: 2, easing: 'ease' }
+		// 		)
+		// 	} else {
+		// 		images.forEach((img) => {
+		// 			img.classList.remove('opacity-0')
+		// 		})
+		// 	}
 	})
 </script>

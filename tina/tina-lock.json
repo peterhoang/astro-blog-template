@@ -25,7 +25,7 @@
 						"name": "category",
 						"label": "Category",
 						"description": "Select an category for this post",
-						"options": ["Category 1", "Category 2", "Category 3", "Category 4", "Category 5"],
+						"options": ["Guides", "Success Stories", "Essentials", "Trends"],
 						"namespace": ["post", "category"],
 						"searchable": true,
 						"uid": false
@@ -113,7 +113,9 @@
 				"namespace": ["post"]
 			}
 		],
-		"config": { "media": { "tina": { "publicFolder": "", "mediaRoot": "/src/assets/images" } } }
+		"config": {
+			"media": { "tina": { "publicFolder": "public", "mediaRoot": "/src/assets/images" } }
+		}
 	},
 	"lookup": {
 		"DocumentConnection": {
